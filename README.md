@@ -44,3 +44,19 @@
 如图：
 <img src="templates/2.png" />
 （2）输入不少于6位的密钥，并选择哈希算法，选择需要加密的文件，点击加密，即可在下载地址找到下载已加密文件的url，将url复制到浏览器即可下载
+
+## 2 Turbo码物理层密钥协商（新增）
+
+新增脚本 `turbo_key_agreement.py`，用于模拟基于Turbo码的物理层密钥协商流程，并输出可用于 NIST 随机数检验的比特序列。
+
+### 2.1 运行方式
+
+```bash
+python turbo_key_agreement.py --key-len 4096 --output-len 20000 --rho 0.94 --seed 2026 --out-file nist_sequence.txt
+```
+
+### 2.2 输出说明
+
+- 命令行会输出：协商前后密钥不一致率。
+- 命令行会输出：NIST-Lite（单比特频数、分组频数、游程、最长游程、2bit Serial）测试 p 值与 PASS/FAIL。
+- 生成文件 `nist_sequence.txt`，内容为 0/1 比特串，可直接作为后续随机性测试输入。
